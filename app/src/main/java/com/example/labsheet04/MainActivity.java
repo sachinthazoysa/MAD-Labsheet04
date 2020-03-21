@@ -26,15 +26,19 @@ public class MainActivity extends AppCompatActivity {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
             CharSequence name = getString(R.string.app_name);
-            String description =
-                    getString(R.string.app_name);
+
+            String description = getString(R.string.app_name);
+
             int importance = NotificationManager.IMPORTANCE_DEFAULT;
-            NotificationChannel channel = new
-                    NotificationChannel(CHANNEL_ID, name, importance);
+
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+
             channel.setDescription(description);
-            NotificationManager notificationManager =
-                    getSystemService(NotificationManager.class);
+
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+
             notificationManager.createNotificationChannel(channel);
+
         }
 
 
@@ -44,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         EditText text =(EditText) findViewById(R.id.editText);
         String message = text.getText().toString();
 
-        Intent intent = new Intent(this, Notification.class);
+        Intent intent = new Intent(this, Registration.class);
 
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
                 Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -52,8 +56,7 @@ public class MainActivity extends AppCompatActivity {
         PendingIntent pendingIntent =
                 PendingIntent.getActivity(this, 0, intent, 0);
 
-        NotificationCompat.Builder builder = new
-                NotificationCompat.Builder(this, CHANNEL_ID)
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_launcher_background)
                 .setContentTitle("Notification")
                 .setContentText("Hello  " +message+ " Welcome to MAD Team" )
@@ -67,8 +70,8 @@ public class MainActivity extends AppCompatActivity {
                 NotificationManagerCompat.from(this);
         notificationManager.notify(0, builder.build());
 
-        
     }
+
 
 
 }
